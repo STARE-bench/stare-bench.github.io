@@ -1,0 +1,69 @@
+/* 如果你原来有 #emma-table，这里改成 #stare-table */
+#stare-table {
+    table-layout: auto;
+    width: 100%;
+  }
+  
+  /* EMMA / EMMA-mini 列头样式改为 STARE / VisSim */
+  .stare-details-cell { /* 原来 .emma-details-cell */
+    cursor: pointer;
+  }
+  .visim-details-cell { /* 原来 .emma-mini-details-cell */
+    cursor: pointer;
+  }
+  
+  /* Overall 列样式 */
+  .stare-overall { /* 原来 .emma-overall */
+    /* 可复用原来 .emma-overall 的排序、宽度等规则 */
+  }
+  .visim-overall { /* 原来 .emma-mini-overall */
+  }
+  
+  /* 细节列，默认隐藏 */
+  .stare-details, .visim-details {
+    display: none;  /* 原来 .hidden */
+  }
+  
+  /* 点击切换时给 <th> 或 <td> 加上 .hidden，就会隐藏/显示 */
+  .hidden {
+    display: none;
+  }
+  
+  /* 如果你要按照 model 类型给行上色，保持原来就行 */
+  .human_expert { background-color: rgba(255, 208, 80, 0.15); }
+  .open_source  { background-color: rgba(249, 242, 248, 1); }
+  .proprietary  { background-color: rgba(117, 209, 215, 0.1); }
+  .random_frequent { background-color: #f4f9fe; color: #808080; }
+  
+  /* 排序小箭头 */
+  .asc::after  { content: ' ↑'; }
+  .desc::after { content: ' ↓'; }
+  
+  /* 小屏自适应 */
+  @media screen and (max-width: 768px) {
+    th, td { min-width: 100px; }
+  }
+  
+  /* 通用表格风格（可直接复用） */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  th {
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #ddd;
+  }
+  .clickable:hover {
+    background-color: #d9d9d9;
+  }
+  

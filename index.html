@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>STARE: Evaluating Multimodal Models on Visual Simulations</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/stare_logo.png">
+
+  <link rel="stylesheet" href="./static/css/index_emma.css">
+
+  <!-- <link rel="stylesheet" href="./static/css/index_emma.css"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script src="./static/js/index_emma.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      bulmaCarousel.attach('#pdf-carousel', {
+        slidesToScroll: 1, 
+        slidesToShow: 1,    
+        loop: true,         
+        autoplay: true,     
+        autoplaySpeed: 5000 
+      });
+    });
+  </script>
+</head>
+<body>
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <img src="./static/images/stare_name.png" alt="STARE Logo" style="max-width: 400px; margin-bottom: 1rem;">
+          <h2 class="title is-3">Unfolding Spatial Cognition:</h2>
+          <h2 class="subtitle is-3 publication-subtitle">Evaluating Multimodal Models on Visual Simulations</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <p>Anonymous Authors</p></span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://anonymous.4open.science/r/EMMA_2325/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Anonymous Github</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="#leaderboard" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon has-text-white">🏆</span>
+                  <span>Leaderboard</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#analysis" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon has-text-white">📊</span>
+                  <span>Analysis</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#examples" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon has-text-white">🧩</span>
+                  <span>Examples</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#interactive-questions" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon has-text-white">💡</span>
+                  <span>Answers</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <!-- <h2 class="subtitle has-text-centered">      
+        We encourage readers to answer the sample questions, note their approach, and check the provided answers <a href="#interactive-questions" style="color: inherit; text-decoration: underline;">below</a>.
+      </h2> -->
+        <img src="./static/images/overview.png" alt="EMMA Category Overview" style="max-width: 100%; height: auto;" id="EMMA_figure">
+      <h2 class="subtitle has-text-centered">
+        Overview. 
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Spatial cognition is essential for human intelligence, enabling problem-solving through visual simulations rather than solely relying on verbal reasoning. However, existing AI benchmarks primarily assess verbal reasoning, neglecting the complexities of non-verbal, multi-step visual simulation. We introduce STARE (Spatial Transformations and Reasoning Evaluation), a benchmark designed to rigorously evaluate multimodal large language models on tasks better solved through multi-step visual simulation. STARE features 3K tasks spanning foundational geometric transformations (2D and 3D), integrated spatial reasoning (cube net folding and tangram puzzles), and real-world spatial reasoning (perspective and temporal reasoning), reflecting practical cognitive challenges like object assembly, mechanical diagram interpretation, and everyday spatial navigation.
+          </p>
+          <p>
+            Our evaluations show that models excel at reasoning over simpler 2D transformations, but perform close to random chance on more complex tasks like 3D cube net folding and tangram puzzles that require multi-step visual simulations. 
+            Humans achieve near-perfect accuracy but take considerable time (up to 28.9s) on complex tasks, significantly speeding up (down by 7.5 seconds on average) with intermediate visual simulations. In contrast, models exhibit inconsistent performance gains from visual simulations, improving on most tasks but declining in specific cases like tangram puzzles (GPT-4o, o1) and cube net folding (Claude-3.5, Gemini-2.0 Flash), indicating that models may not know how to effectively leverage intermediate visual information.
+            <!-- We introduce <img src="./static/images/emma.png" style="width:5.0em; margin-top: -0.4em; vertical-align: middle;" alt="Logo"/>, a benchmark targeting organic multimodal reasoning across mathematics, physics, chemistry, and coding. EMMA tasks demand advanced cross-modal reasoning that cannot be addressed by reasoning independently in each modality, offering an enhanced test suite for MLLMs' reasoning capabilities. -->
+            <!-- Our evaluation of state-of-the-art MLLMs on EMMA reveals significant limitations in <b>handling complex multimodal and multi-step reasoning tasks</b>, with even advanced techniques like Chain-of-Thought prompting and test-time compute scaling underperforming. These findings underscore the need for improved multimodal architectures and training paradigms to close the gap between human and model reasoning in multimodality. -->
+          </p>
+        </div>
+        <img src="./static/images/motivation.png" alt="Motivation" style="width: 100%; max-width: 1000px; margin-top: 20px;"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+        <div class="leaderboard-description">
+          Accuracy scores on both EMMA and EMMA-mini. <b>Click on EMMA or EMMA-mini to expand detailed results.</b>
+        </div>        
+        <br>
+        <div class="model-labels-container">
+          <span class="leaderboard-label human_expert">Human Expert</span>
+          <span class="leaderboard-label open_source">Open-Source</span>
+          <span class="leaderboard-label proprietary">Proprietary</span>
+        </div>
+        <br>
+
+        <div class="leaderboard-container">
+          <div class="table-wrapper">
+            <table id="emma-table">
+              <thead>
+
+                <tr>
+                  <th colspan="3" class="reset-cell clickable" style="text-align: center;">Reset</th>
+                  <th class="emma-details-cell clickable" colspan="1">EMMA</th>
+                  <th class="emma-mini-details-cell clickable" colspan="1">EMMA-Mini</th>
+                </tr>
+
+                <tr>
+                  <th class="sortable clickable" data-sort="string">Name</th>
+                  <th class="clickable" data-sort="string">Size</th>
+
+                  <th class="sortable clickable" data-sort="string">CoT prompting</th>
+
+
+                  <th class="sortable clickable emma-overall" data-sort="number">Overall</th>
+                  <th class="hidden emma-details sortable clickable" data-sort="number">Math</th>
+                  <th class="hidden emma-details sortable clickable" data-sort="number">Physics</th>
+                  <th class="hidden emma-details sortable clickable" data-sort="number">Chemistry</th>
+                  <th class="hidden emma-details sortable clickable" data-sort="number">Coding</th>
+
+                  <th class="sortable clickable emma-mini-overall" data-sort="number">Overall</th>
+                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Math</th>
+                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Physics</th>
+                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Chemistry</th>
+                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Coding</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <p class="test-desc">Overall results of different models on the EMMA leaderboard.
+              The best-performing model in each category is <b>in-bold</b>, and the second best is <u>underlined</u>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+        <div class="leaderboard-description">
+          Accuracy scores on the STARE benchmark. 
+          <b>Click on “VisSim” to expand detailed results.</b>
+        </div>        
+        <br>
+        <div class="model-labels-container">
+          <span class="leaderboard-label human_expert">Human Expert</span>
+          <span class="leaderboard-label open_source">Open-Source</span>
+          <span class="leaderboard-label proprietary">Proprietary</span>
+        </div>
+        <br>
+        <div class="leaderboard-container">
+          <div class="table-wrapper">
+            <table id="stare-table">
+              <thead>
+                <tr>
+                  <th colspan="3" class="reset-cell clickable" style="text-align: center;">Reset</th>
+                  <th class="stare-details-cell clickable" colspan="1">STARE</th>
+                  <th class="visim-details-cell clickable" colspan="1">VisSim</th>
+                </tr>
+                <tr>
+                  <th class="sortable clickable" data-sort="string">Name</th>
+                  <th class="clickable" data-sort="string">Size</th>
+                  <th class="sortable clickable" data-sort="string">CoT prompting</th>
+                  <th class="sortable clickable stare-overall" data-sort="number">Overall</th>
+                  <!-- 其余 STARE 任务列根据需要加 .hidden 和 .stare-details 类 -->
+                  <th class="sortable clickable visim-overall" data-sort="number">Overall</th>
+                  <!-- 其余 VisSim 任务列根据需要加 .hidden 和 .visim-details 类 -->
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <p class="test-desc">
+              Overall results of different models on the STARE leaderboard.
+              The best model is <b>bolded</b>, the runner-up is <u>underlined</u>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mmmu">
+      <span class="mmmu">STARE Benchmark</span>
+    </h1>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-full-width has-text-centered"> -->
+        <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            EMMA is composed of <b> 2,788 problems</b> , of which <b> 1,796 are newly constructed</b> , across four domains: math, physics, chemistry, and coding.
+            To provide fine-grained insights into how MLLMs might fail in multimodal reasoning, we assign labels to each problem in our benchmark. These labels are either created by domain experts or assigned by GPT-4o and subsequently verified by experts. 
+            As shown in  <a href="#EMMA_figure" style="text-decoration: underline; color: inherit;">Category Figure</a>, questions in EMMA <b>assess a wide array of multimodal reasoning skills</b>. For example, the pattern inference problem in math challenges models to identify and generalize visual patterns; the visual decomposition simulation problem in physics requires graphically decomposing forces to determine resultant effects; the reaction simulation problem in chemistry demands precise interpretation and simulation of electron movement; the 3D visualization problem in coding. 
+            <!-- a compilation of data 1) carefully examined and filtered from 28 existing VQA and MathQA datasets and 2) manually collected by us. In total, 6,141 examples were collected from 31 different datasets. -->
+          </p>
+
+
+          <p>
+            <ul>
+              <li><b>EMMA-mini</b>: To create a more balanced subset of EMMA, we randomly sample 400 questions (100 per subject) from the benchmark, hereafter referred to as EMMA-mini.</li>
+            </ul>
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column" style="margin-right: -20rem;">
+        <div class="content has-text-centered">
+          <img src="static/images/statistic.png" alt="data-overview" style="max-width: 50%;"/>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content has-text-centered">
+          <img src="static/images/composition.png" alt="data-composition" style="max-width: 56%;"/>
+        </div>
+      </div>
+    </div>
+
+<div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Test-time Compute Scaling</h2>
+        <div class="content has-text-justified">
+          <p>
+            We also try various test-time compute scaling strategies. While they tend to boost model performance, they are far from enough to close the gap to human-level performance. <b> The best model and scaling strategy configuration we try still trails humans by 27%</b>.
+          </p>
+        </div>
+        <img src="./static/images/complexity.png" alt="Motivation" style="width: 100%; max-width:1000px; margin-top: 20px;"/>
+      </div>
+    </div>
+  </div>
+    
+
+<section class="section" id="analysis">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Error Analysis</h2>
+        <div class="content has-text-justified">
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="./static/images/transformation_types.png" alt="CoT Analysis" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+                  <p>Using the abels for each question based on the multimodal skills it assesses, we find that <b>CoT prompting hurts performance on visual-reasoning-heavy tasks</b>, while it benefits closed-source models on tasks where textual CoT is theoretically useful.</p>
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="./static/images/question_type.png" alt="Error Analysis" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+                  <p>Distribution of error types made by o1 on the math and coding portions of EMMA-mini. <b>The majority of errors arise in visual reasoning</b>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMMA Case Examples Section -->
+ 
+<section class="section"  id="examples">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title is-3 has-text-centered">Examples</h2>
+    <div id="pdf-carousel" class="carousel results-carousel">
+      <!-- Math Case -->
+      <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/stare_case_1.png" data-lightbox="emma-cases" data-title="Math Case 1">
+            <img src="./static/images/stare_case_1.png" alt="Stare Case 1" class="case-image"/>
+          </a>
+          <p>Case 1</p>
+        </div>
+      </div>
+      <!-- Math Case 2-->
+      <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/stare_case_2.png" data-lightbox="emma-cases" data-title="Math Case 2">
+            <img src="./static/images/stare_case_2.png" alt="Case 2" class="case-image"/>
+          </a>
+          <p>Case 2</p>
+        </div>
+      </div>
+
+      <!-- Physics Case 1 -->
+      <!-- <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/physics-case-1.png" data-lightbox="emma-cases" data-title="Physics Case 1">
+            <img src="./static/images/physics-case-1.png" alt="Physics Case 1" class="case-image"/>
+          </a>
+          <p>Physics Case 1</p>
+        </div>
+      </div> -->
+
+      <!-- Physics Case 2 -->
+      <!-- <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/physics-case-2.png" data-lightbox="emma-cases" data-title="Physics Case 2">
+            <img src="./static/images/physics-case-2.png" alt="Physics Case 2" class="case-image"/>
+          </a>
+          <p>Physics Case 2</p>
+        </div>
+      </div> -->
+
+      <!-- Physics Case 3
+      <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/physics-case-3.png" data-lightbox="emma-cases" data-title="Physics Case 3">
+            <img src="./static/images/physics-case-3.png" alt="Physics Case 3" class="case-image"/>
+          </a>
+          <p>Physics Case 3</p>
+        </div>
+      </div>
+
+      Physics Case 4 -->
+      <!-- <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/physics-case-4.png" data-lightbox="emma-cases" data-title="Physics Case 4">
+            <img src="./static/images/physics-case-4.png" alt="Physics Case 4" class="case-image"/>
+          </a>
+          <p>Physics Case 4</p>
+        </div>
+      </div> -->
+
+      <!-- Chemistry Case -->
+      <!-- <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/chemistry-case-1.png" data-lightbox="emma-cases" data-title="Chemistry Case 1">
+            <img src="./static/images/chemistry-case-1.png" alt="Chemistry Case 1" class="case-image"/>
+          </a>
+          <p>Chemistry Case 1</p>
+        </div>
+      </div> -->
+    
+    
+      <!-- Coding Case 1 -->
+      <!-- <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/coding-case-1.png" data-lightbox="emma-cases" data-title="Coding Case 1">
+            <img src="./static/images/coding-case-1.png" alt="Coding Case 1" class="case-image"/>
+          </a>
+          <p>Coding Case 1</p>
+        </div>
+      </div> -->
+
+    </div>
+
+    <p class="has-text-centered">More examples detailed in the Appendix.</p>
+  </div>
+</section> 
+
+<!-- Lightbox.js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+
+<!-- 
+
+
+<section class="section" id="interactive-questions">
+  <div class="container is-max-desktop">
+    <div class="columns is-multiline is-centered">
+      <div class="column is-12">
+        <h2 class="title is-3">Interactive Answers</h2>
+        <p>Click on the image to display the answer. Please check complete Coding questions in the Appendix.</p>
+      </div>
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/math_test_1.png" alt="Question 1" class="question-image" onclick="toggleAnswer('answer1')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer1" style="display: none;">
+              <p>Answer: B.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/math_test_2.png" alt="Question 2" class="question-image" onclick="toggleAnswer('answer2')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer2" style="display: none;">
+              <p>Answer: B.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/physics_test_1.png" alt="Question 3" class="question-image" onclick="toggleAnswer('answer3')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer3" style="display: none;">
+              <p>Answer: d. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/physics_test_2.png" alt="Question 4" class="question-image" onclick="toggleAnswer('answer4')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer4" style="display: none;">
+              <p>Answer: a. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/physics_test_3.png" alt="Question 5" class="question-image" onclick="toggleAnswer('answer5')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer5" style="display: none;">
+              <p>Answer: c.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/physics_test_4.png" alt="Question 6" class="question-image" onclick="toggleAnswer('answer6')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer6" style="display: none;">
+              <p>Answer: A.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/chem_test_3.png" alt="Question 7" class="question-image" onclick="toggleAnswer('answer7')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer7" style="display: none;">
+              <p>Answer: B.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/math_test_5.png" alt="Question 8" class="question-image" onclick="toggleAnswer('answer8')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer8" style="display: none;">
+              <p>Answer: 7.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/math_test_3.png" alt="Question 9" class="question-image" onclick="toggleAnswer('answer9')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer9" style="display: none;">
+              <p>Answer: D</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/chem_test_1.png" alt="Question 10" class="question-image" onclick="toggleAnswer('answer10')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer10" style="display: none;">
+              <p>Answer: 12.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/chem_test_2.png" alt="Question 11" class="question-image" onclick="toggleAnswer('answer11')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer11" style="display: none;">
+              <p>Answer: B</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/code_test_3.png" alt="Question 12" class="question-image" onclick="toggleAnswer('answer12')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer12" style="display: none;">
+              <p>Answer: C.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/math_test_4.png" alt="Question 13" class="question-image" onclick="toggleAnswer('answer13')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer13" style="display: none;">
+              <p>Answer: C.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/physics_test_5.png" alt="Question 12" class="question-image" onclick="toggleAnswer('answer14')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer14" style="display: none;">
+              <p>Answer: B.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/chem_test_5.png" alt="Question 15" class="question-image" onclick="toggleAnswer('answer15')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer15" style="display: none;">
+              <p>Answer: B</p>
+            </div>
+          </div>
+        </div>
+      </div>   
+      
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/chem_test_4.png" alt="Question 16" class="question-image" onclick="toggleAnswer('answer16')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer16" style="display: none;">
+              <p>Answer: C.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/code_test_4.png" alt="Question 17" class="question-image" onclick="toggleAnswer('answer17')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer17" style="display: none;">
+              <p>Answer: A.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/code_test_1.png" alt="Question 18" class="question-image" onclick="toggleAnswer('answer18')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer18" style="display: none;">
+              <p>Answer: D.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="./static/images/code_test_2.png" alt="Question 19" class="question-image" onclick="toggleAnswer('answer19')">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content answer" id="answer19" style="display: none;">
+              <p>Answer: D.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script>
+  function toggleAnswer(answerId) {
+    var answerElement = document.getElementById(answerId);
+    if (answerElement.style.display === "none" || answerElement.style.display === "") {
+      answerElement.style.display = "block";
+    } else {
+      answerElement.style.display = "none";
+    }
+  }
+</script> -->
+
+
+
+</body>
+</html>
