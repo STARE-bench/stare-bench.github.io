@@ -1,69 +1,91 @@
-/* 如果你原来有 #emma-table，这里改成 #stare-table */
-#stare-table {
-    table-layout: auto;
-    width: 100%;
-  }
-  
-  /* EMMA / EMMA-mini 列头样式改为 STARE / VisSim */
-  .stare-details-cell { /* 原来 .emma-details-cell */
-    cursor: pointer;
-  }
-  .visim-details-cell { /* 原来 .emma-mini-details-cell */
-    cursor: pointer;
-  }
-  
-  /* Overall 列样式 */
-  .stare-overall { /* 原来 .emma-overall */
-    /* 可复用原来 .emma-overall 的排序、宽度等规则 */
-  }
-  .visim-overall { /* 原来 .emma-mini-overall */
-  }
-  
-  /* 细节列，默认隐藏 */
-  .stare-details, .visim-details {
-    display: none;  /* 原来 .hidden */
-  }
-  
-  /* 点击切换时给 <th> 或 <td> 加上 .hidden，就会隐藏/显示 */
-  .hidden {
-    display: none;
-  }
-  
-  /* 如果你要按照 model 类型给行上色，保持原来就行 */
-  .human_expert { background-color: rgba(255, 208, 80, 0.15); }
-  .open_source  { background-color: rgba(249, 242, 248, 1); }
-  .proprietary  { background-color: rgba(117, 209, 215, 0.1); }
-  .random_frequent { background-color: #f4f9fe; color: #808080; }
-  
-  /* 排序小箭头 */
-  .asc::after  { content: ' ↑'; }
-  .desc::after { content: ' ↓'; }
-  
-  /* 小屏自适应 */
-  @media screen and (max-width: 768px) {
-    th, td { min-width: 100px; }
-  }
-  
-  /* 通用表格风格（可直接复用） */
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-  }
+/* index_stare.css */
+
+/* --- 全局基础样式 --- */
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.link-block a {
+  margin: 5px 0;
+}
+
+/* --- Model 标签颜色 --- */
+.human_expert { background-color: rgba(255, 208, 80, 0.15); }
+.open_source   { background-color: rgba(249, 242, 248, 1); }
+.proprietary   { background-color: rgba(117, 209, 215, 0.1); }
+.random_frequent { background-color: #f4f9fe; color: #808080; }
+
+/* --- Leaderboard 容器 --- */
+.model-labels-container {
+  text-align: center;
+  margin: 8px 0;
+}
+.model-label {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 5px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+/* 横向滚动 */
+.leaderboard-container, .table-wrapper {
+  overflow-x: auto;
+}
+
+/* 表格基础 */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+th {
+  background-color: #f2f2f2;
+  border-bottom: 2px solid #ddd;
+}
+td:hover {
+  background-color: #fff;
+}
+
+/* 主、次表头 */
+.main-header { background-color: #e6e6e6; font-weight: bold; text-align: center; }
+.sub-header  { background-color: #f2f2f2; }
+
+/* 可排序指针 & 箭头 */
+.clickable:hover { background-color: #d9d9d9; cursor: pointer; }
+.asc::after { content: ' ↑'; }
+.desc::after { content: ' ↓'; }
+
+/* 隐藏列 */
+.hidden { display: none; }
+
+/* STARE / VisSim 明细列初始隐藏 */
+.stare-details,
+.visim-details {
+  display: none;
+}
+/* Overall 列居中 */
+.stare-overall,
+.visim-overall {
+  text-align: center;
+}
+
+/* Reset 单元格提示 */
+.reset-cell { font-weight: bold; cursor: pointer; }
+.reset-cell:hover { background-color: #eee; }
+
+/* 响应式 */
+@media screen and (max-width: 768px) {
   th, td {
-    text-align: left;
-    padding: 8px;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    min-width: 100px;
   }
-  th {
-    background-color: #f2f2f2;
-    border-bottom: 2px solid #ddd;
-  }
-  .clickable:hover {
-    background-color: #d9d9d9;
-  }
-  
+}

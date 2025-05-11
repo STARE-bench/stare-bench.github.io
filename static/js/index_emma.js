@@ -1,4 +1,6 @@
+// index_stare.js
 
+// If you still use the carousel elsewhere, keep this part; otherwise you can remove it.
 $(document).ready(function() {
   const options = {
     slidesToScroll: 1,
@@ -17,82 +19,66 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', adjustNameColumnWidth);
 });
 
-
 function loadTableData() {
-  console.log('Starting to load table data...');
-  fetch('./emma_leaderboard.json') 
+  fetch('./stare_leaderboard.json')
     .then(response => {
-      console.log('Response status:', response.status);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return response.json();
     })
     .then(data => {
-      console.log('Data loaded successfully:', data);
-      const tbody = document.querySelector('#emma-table tbody');
+      const tbody = document.querySelector('#stare-table tbody');
 
+      const stareScores    = prepareScoresForStyling(data.leaderboardData, 'stare');
+      const visimScores    = prepareScoresForStyling(data.leaderboardData, 'stare-visim');
 
-      const emmaScores = prepareScoresForStyling(data.leaderboardData, 'emma');
-      const emmaMiniScores = prepareScoresForStyling(data.leaderboardData, 'emma-mini');
-
-      data.leaderboardData.forEach((row, index) => {
+      data.leaderboardData.forEach((row, idx) => {
         const tr = document.createElement('tr');
         tr.classList.add(row.info.type || 'unknown');
 
-        const nameCell = (row.info.link && row.info.link.trim() !== '')
+        // Name + link
+        const nameCell = row.info.link
           ? `<a href="${row.info.link}" target="_blank"><b>${row.info.name}</b></a>`
           : `<b>${row.info.name}</b>`;
 
-
+        // CoT symbol
         let cotSymbol = '-';
-        if (row.info.CoT === "true") {
-          cotSymbol = '✓';
-        } else if (row.info.CoT === "false") {
-          cotSymbol = '✗';
-        }
+        if (row.info.CoT === "true")  cotSymbol = '✓';
+        if (row.info.CoT === "false") cotSymbol = '✗';
 
+        // Safe getter
+        const safeGet = (obj, path) =>
+          path.split('.').reduce((a, p) => a && a[p], obj) || '-';
 
-        const safeGet = (obj, path, defaultValue = '-') => {
-          return path.split('.').reduce((acc, part) => acc && acc[part], obj) || defaultValue;
-        };
+        // Format overall (no author mark here, so just value)
+        const fmt = (val) => val === '-' ? '-' : val;
 
-
-        const formatOverallValue = (value, source) => {
-
-          return (source === 'author') ? `${value || '-'}*` : `${value || '-'}`;
-        };
-
-
-        const emmaOverall = formatOverallValue(
-          applyStyle(safeGet(row, 'emma.overall'), emmaScores.overall[index]),
-          safeGet(row, 'emma.source')
-        );
-
-        const emmaMiniOverall = formatOverallValue(
-          applyStyle(safeGet(row, 'emma-mini.overall'), emmaMiniScores.overall[index]),
-          safeGet(row, 'emma-mini.source')
-        );
-
-
+        // Build row HTML
         tr.innerHTML = `
           <td>${nameCell}</td>
           <td>${row.info.size || '-'}</td>
           <td>${cotSymbol}</td>
 
-          <!-- EMMA -->
-          <td class="emma-overall">${emmaOverall}</td>
-          <td class="hidden emma-details">${applyStyle(safeGet(row, 'emma.math'), emmaScores.math[index])}</td>
-          <td class="hidden emma-details">${applyStyle(safeGet(row, 'emma.physics'), emmaScores.physics[index])}</td>
-          <td class="hidden emma-details">${applyStyle(safeGet(row, 'emma.chemistry'), emmaScores.chemistry[index])}</td>
-          <td class="hidden emma-details">${applyStyle(safeGet(row, 'emma.coding'), emmaScores.coding[index])}</td>
+          <!-- STARE overall + details -->
+          <td class="stare-overall">
+            ${applyStyle(fmt(safeGet(row, 'stare.overall')), stareScores.overall[idx])}
+          </td>
+          <td class="hidden stare-details">${applyStyle(safeGet(row, 'stare.2D_trans'), stareScores['2D_trans'][idx])}</td>
+          <td class="hidden stare-details">${applyStyle(safeGet(row, 'stare.3D_trans'), stareScores['3D_trans'][idx])}</td>
+          <td class="hidden stare-details">${applyStyle(safeGet(row, 'stare.cube_net'), stareScores['cube_net'][idx])}</td>
+          <td class="hidden stare-details">${applyStyle(safeGet(row, 'stare.tangram'), stareScores['tangram'][idx])}</td>
+          <td class="hidden stare-details">${applyStyle(safeGet(row, 'stare.temporal'), stareScores['temporal'][idx])}</td>
+          <td class="hidden stare-details">${applyStyle(safeGet(row, 'stare.perspective'), stareScores['perspective'][idx])}</td>
 
-          <!-- EMMA-Mini -->
-          <td class="emma-mini-overall">${emmaMiniOverall}</td>
-          <td class="hidden emma-mini-details">${applyStyle(safeGet(row, 'emma-mini.math'), emmaMiniScores.math[index])}</td>
-          <td class="hidden emma-mini-details">${applyStyle(safeGet(row, 'emma-mini.physics'), emmaMiniScores.physics[index])}</td>
-          <td class="hidden emma-mini-details">${applyStyle(safeGet(row, 'emma-mini.chemistry'), emmaMiniScores.chemistry[index])}</td>
-          <td class="hidden emma-mini-details">${applyStyle(safeGet(row, 'emma-mini.coding'), emmaMiniScores.coding[index])}</td>
+          <!-- VisSim overall + details -->
+          <td class="visim-overall">
+            ${applyStyle(fmt(safeGet(row, 'stare-visim.overall')), visimScores.overall[idx])}
+          </td>
+          <td class="hidden visim-details">${applyStyle(safeGet(row, 'stare-visim.2D_trans'), visimScores['2D_trans'][idx])}</td>
+          <td class="hidden visim-details">${applyStyle(safeGet(row, 'stare-visim.3D_trans'), visimScores['3D_trans'][idx])}</td>
+          <td class="hidden visim-details">${applyStyle(safeGet(row, 'stare-visim.cube_net'), visimScores['cube_net'][idx])}</td>
+          <td class="hidden visim-details">${applyStyle(safeGet(row, 'stare-visim.tangram'), visimScores['tangram'][idx])}</td>
+          <td class="hidden visim-details">${applyStyle(safeGet(row, 'stare-visim.temporal'), visimScores['temporal'][idx])}</td>
+          <td class="hidden visim-details">${applyStyle(safeGet(row, 'stare-visim.perspective'), visimScores['perspective'][idx])}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -100,253 +86,142 @@ function loadTableData() {
       setTimeout(adjustNameColumnWidth, 0);
       initializeSorting();
     })
-    .catch(error => {
-      console.error('Error loading table data:', error);
-      document.querySelector('#emma-table tbody').innerHTML = `
-        <tr>
-          <td colspan="10">
-            Error loading data: ${error.message}<br>
-            Please ensure you're accessing this page through a web server
-            (e.g., http://localhost:8000) and not directly from the file system.
-          </td>
-        </tr>
-      `;
+    .catch(err => {
+      console.error(err);
+      document.querySelector('#stare-table tbody').innerHTML = `
+        <tr><td colspan="16">
+          Error loading data: ${err.message}<br>
+          Make sure you're serving via HTTP (e.g. localhost) not file://
+        </td></tr>`;
     });
 }
-
-
 
 function setupEventListeners() {
-  // Reset
-  document.querySelector('.reset-cell').addEventListener('click', function() {
-    resetTable();
-  });
-
-
-  document.querySelector('.emma-details-cell').addEventListener('click', function() {
-    toggleDetails('emma');
-  });
-
-
-  document.querySelector('.emma-mini-details-cell').addEventListener('click', function() {
-    toggleDetails('emma-mini');
-  });
-
-
-  const headers = document.querySelectorAll('#emma-table thead tr:last-child th.sortable');
-  headers.forEach(header => {
-    header.addEventListener('click', function() {
-      sortTable(this);
-    });
-  });
+  document.querySelector('.reset-cell').addEventListener('click', resetTable);
+  document.querySelector('.stare-details-cell').addEventListener('click', () => toggleDetails('stare'));
+  document.querySelector('.visim-details-cell').addEventListener('click', () => toggleDetails('stare-visim'));
+  document.querySelectorAll('#stare-table thead tr:last-child th.sortable')
+    .forEach(th => th.addEventListener('click', () => sortTable(th)));
 }
-
 
 function toggleDetails(section) {
-  const sections = ['emma', 'emma-mini'];
+  const sections = ['stare','stare-visim'];
   sections.forEach(sec => {
-    const detailCells = document.querySelectorAll('.' + sec + '-details');
+    const detailCells  = document.querySelectorAll('.' + sec + '-details');
     const overallCells = document.querySelectorAll('.' + sec + '-overall');
-    const headerCell = document.querySelector('.' + sec + '-details-cell');
+    const headerCell   = document.querySelector('.' + sec + '-details-cell');
     if (sec === section) {
-      detailCells.forEach(cell => cell.classList.toggle('hidden'));
-      const currentColspan = headerCell.getAttribute('colspan');
-
-      headerCell.setAttribute('colspan', currentColspan === '1' ? '5' : '1');
+      detailCells.forEach(c => c.classList.toggle('hidden'));
+      headerCell.setAttribute('colspan', headerCell.getAttribute('colspan')==='1' ? '7' : '1');
     } else {
-
-      detailCells.forEach(cell => cell.classList.add('hidden'));
-      overallCells.forEach(cell => cell.classList.remove('hidden'));
-      document.querySelector('.' + sec + '-details-cell').setAttribute('colspan', '1');
+      detailCells.forEach(c => c.classList.add('hidden'));
+      overallCells.forEach(c => c.classList.remove('hidden'));
+      document.querySelector('.' + sec + '-details-cell').setAttribute('colspan','1');
     }
   });
-
   setTimeout(adjustNameColumnWidth, 0);
 }
-
 
 function resetTable() {
-
-  document.querySelectorAll('.emma-details, .emma-mini-details').forEach(function(cell) {
-    cell.classList.add('hidden');
-  });
-
-
-  document.querySelectorAll('.emma-overall, .emma-mini-overall').forEach(function(cell) {
-    cell.classList.remove('hidden');
-  });
-
-
-  document.querySelector('.emma-details-cell').setAttribute('colspan', '1');
-  document.querySelector('.emma-mini-details-cell').setAttribute('colspan', '1');
-
-
-  const emmaMiniOverallHeader = document.querySelector('#emma-table thead tr:last-child th.emma-mini-overall');
-  sortTable(emmaMiniOverallHeader, true);
-
+  document.querySelectorAll('.stare-details, .visim-details').forEach(c => c.classList.add('hidden'));
+  document.querySelectorAll('.stare-overall, .visim-overall').forEach(c => c.classList.remove('hidden'));
+  document.querySelector('.stare-details-cell').setAttribute('colspan','1');
+  document.querySelector('.visim-details-cell').setAttribute('colspan','1');
+  const hdr = document.querySelector('#stare-table thead tr:last-child th.visim-overall');
+  sortTable(hdr, true);
   setTimeout(adjustNameColumnWidth, 0);
 }
 
-
-function sortTable(header, forceDescending = false, maintainOrder = false) {
-  const table = document.getElementById('emma-table');
+function sortTable(header, forceDesc = false) {
+  const table = document.getElementById('stare-table');
   const tbody = table.querySelector('tbody');
-  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const rows  = Array.from(tbody.querySelectorAll('tr'));
   const headers = Array.from(header.parentNode.children);
-  const columnIndex = headers.indexOf(header);
-  const sortType = header.dataset.sort;
+  const idx = headers.indexOf(header);
+  const type = header.dataset.sort;
+  const desc = forceDesc ||
+               (!header.classList.contains('asc') && !header.classList.contains('desc')) ||
+                header.classList.contains('asc');
 
+  rows.sort((a,b) => {
+    let aVal = getCellValue(a, idx), bVal = getCellValue(b, idx);
+    if (aVal==='-' && bVal!=='-') return desc ? 1 : -1;
+    if (bVal==='-' && aVal!=='-') return desc ? -1 : 1;
+    if (type==='number') {
+      return desc
+        ? parseFloat(bVal) - parseFloat(aVal)
+        : parseFloat(aVal) - parseFloat(bVal);
+    }
+    return desc
+      ? bVal.localeCompare(aVal)
+      : aVal.localeCompare(bVal);
+  });
 
-  const isDescending = forceDescending ||
-    (!header.classList.contains('asc') && !header.classList.contains('desc')) ||
-    header.classList.contains('asc');
-
-  if (!maintainOrder) {
-    rows.sort((a, b) => {
-      let aValue = getCellValue(a, columnIndex);
-      let bValue = getCellValue(b, columnIndex);
-
-
-      if (sortType === 'cot') {
-
-        const cotMapping = {
-          '✓': 2,
-          '✗': 1,
-          '-': 0
-        };
-        aValue = cotMapping[aValue] !== undefined ? cotMapping[aValue] : 0;
-        bValue = cotMapping[bValue] !== undefined ? cotMapping[bValue] : 0;
-        return isDescending ? (bValue - aValue) : (aValue - bValue);
-      }
-
-
-      if (aValue === '-' && bValue !== '-') return isDescending ? 1 : -1;
-      if (bValue === '-' && aValue !== '-') return isDescending ? -1 : 1;
-
-
-      if (sortType === 'number') {
-        return isDescending
-          ? parseFloat(bValue) - parseFloat(aValue)
-          : parseFloat(aValue) - parseFloat(bValue);
-      } else if (sortType === 'date') {
-        return isDescending
-          ? new Date(bValue) - new Date(aValue)
-          : new Date(aValue) - new Date(bValue);
-      } else {
-
-        return isDescending
-          ? bValue.localeCompare(aValue)
-          : aValue.localeCompare(bValue);
-      }
-    });
-  }
-
-
-  headers.forEach(th => th.classList.remove('asc', 'desc'));
-
-  header.classList.add(isDescending ? 'desc' : 'asc');
-
-
-  rows.forEach(row => tbody.appendChild(row));
-
+  header.parentNode.querySelectorAll('th').forEach(th => th.classList.remove('asc','desc'));
+  header.classList.add(desc ? 'desc' : 'asc');
+  rows.forEach(r => tbody.appendChild(r));
   setTimeout(adjustNameColumnWidth, 0);
 }
-
 
 function getCellValue(row, index) {
   const cells = Array.from(row.children);
   let cell = cells[index];
-
-
   if (cell && cell.classList.contains('hidden')) {
-    if (cell.classList.contains('emma-details') || cell.classList.contains('emma-overall')) {
+    if (cell.classList.contains('stare-details') || cell.classList.contains('stare-overall')) {
       cell = cells.find(c =>
-        (c.classList.contains('emma-overall') || c.classList.contains('emma-details')) &&
-        !c.classList.contains('hidden')
+        (c.classList.contains('stare-overall') || c.classList.contains('stare-details')) &&
+         !c.classList.contains('hidden')
       );
-    } else if (cell.classList.contains('emma-mini-details') || cell.classList.contains('emma-mini-overall')) {
+    } else if (cell.classList.contains('visim-details') || cell.classList.contains('visim-overall')) {
       cell = cells.find(c =>
-        (c.classList.contains('emma-mini-overall') || c.classList.contains('emma-mini-details')) &&
-        !c.classList.contains('hidden')
+        (c.classList.contains('visim-overall') || c.classList.contains('visim-details')) &&
+         !c.classList.contains('hidden')
       );
     }
   }
   return cell ? cell.textContent.trim() : '';
 }
 
-
 function initializeSorting() {
-  const emmaMiniOverallHeader = document.querySelector('#emma-table thead tr:last-child th.emma-mini-overall');
-  sortTable(emmaMiniOverallHeader, true);
+  const hdr = document.querySelector('#stare-table thead tr:last-child th.visim-overall');
+  sortTable(hdr, true);
 }
-
 
 function adjustNameColumnWidth() {
-  const nameColumn = document.querySelectorAll('#emma-table td:first-child, #emma-table th:first-child');
-  let maxWidth = 0;
-
-
+  const nameCols = document.querySelectorAll('#stare-table td:first-child, #stare-table th:first-child');
+  let maxW = 0;
   const span = document.createElement('span');
-  span.style.visibility = 'hidden';
-  span.style.position = 'absolute';
-  span.style.whiteSpace = 'nowrap';
+  span.style.visibility='hidden'; span.style.position='absolute'; span.style.whiteSpace='nowrap';
   document.body.appendChild(span);
-
-  nameColumn.forEach(cell => {
-    span.textContent = cell.textContent;
-    const width = span.offsetWidth;
-    if (width > maxWidth) {
-      maxWidth = width;
-    }
+  nameCols.forEach(c => {
+    span.textContent = c.textContent;
+    maxW = Math.max(maxW, span.offsetWidth);
   });
-
   document.body.removeChild(span);
-
-
-  maxWidth += 20;
-
-
-  nameColumn.forEach(cell => {
-    cell.style.width = `${maxWidth}px`;
-    cell.style.minWidth = `${maxWidth}px`;
-    cell.style.maxWidth = `${maxWidth}px`;
+  maxW += 20;
+  nameCols.forEach(c => {
+    c.style.minWidth = c.style.maxWidth = c.style.width = `${maxW}px`;
   });
 }
-
 
 function prepareScoresForStyling(data, section) {
   const scores = {};
-
-  const fields = ['overall', 'math', 'physics', 'chemistry', 'coding'];
-
-  fields.forEach(field => {
-    const values = data
-      .map(row => row[section] && row[section][field])
-      .filter(value => value !== '-' && value !== undefined && value !== null)
-      .map(parseFloat);
-
-    if (values.length > 0) {
-
-      const sortedValues = [...new Set(values)].sort((a, b) => b - a);
-      scores[field] = data.map(row => {
-        const value = row[section] && row[section][field];
-        if (value === '-' || value === undefined || value === null) {
-          return -1;
-        }
-        return sortedValues.indexOf(parseFloat(value));
-      });
-    } else {
-      scores[field] = data.map(() => -1);
-    }
+  const fields = ['overall','2D_trans','3D_trans','cube_net','tangram','temporal','perspective'];
+  fields.forEach(f => {
+    const vals = data.map(r => r[section]?.[f])
+                     .filter(v=>v!=='-'&&v!=null).map(parseFloat);
+    const sorted = [...new Set(vals)].sort((a,b)=>b-a);
+    scores[f] = data.map(r => {
+      const v = r[section]?.[f];
+      return v==null||v==='-' ? -1 : sorted.indexOf(parseFloat(v));
+    });
   });
-
   return scores;
 }
 
-
-function applyStyle(value, rank) {
-  if (value === undefined || value === null || value === '-') return '-';
-  if (rank === 0) return `<b>${value}</b>`;
-  if (rank === 1) return `<span style="text-decoration: underline;">${value}</span>`;
-  return `${value}`;
+function applyStyle(val, rank) {
+  if (val=='-'||val==null) return '-';
+  if (rank===0) return `<b>${val}</b>`;
+  if (rank===1) return `<span style="text-decoration:underline;">${val}</span>`;
+  return val;
 }

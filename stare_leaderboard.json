@@ -1,0 +1,326 @@
+{
+  "leaderboardData": [
+    {
+      "info": {
+        "name": "random",
+        "CoT": "-",
+        "type": "random_frequent",
+        "size": "-"
+      },
+      "stare": {
+        "2D_trans": "25.00",
+        "3D_trans": "25.00",
+        "cube_net": "50.50",
+        "tangram": "50.50",
+        "temporal": "33.30",
+        "perspective": "25.00",
+        "overall": "34.80"
+      },
+      "stare-visim": {
+        "2D_trans": "25.00",
+        "3D_trans": "25.00",
+        "cube_net": "50.50",
+        "tangram": "49.10",
+        "temporal": "33.30",
+        "perspective": "25.00",
+        "overall": "34.80"
+      }
+    },
+    {
+      "info": {
+        "name": "gpt-4o",
+        "CoT": "false",
+        "type": "proprietary",
+        "size": "-",
+        "link": "https://platform.openai.com"
+      },
+      "stare": {
+        "2D_trans": "71.20",
+        "3D_trans": "65.50",
+        "cube_net": "50.30",
+        "tangram": "52.50",
+        "temporal": "39.00",
+        "perspective": "38.70",
+        "overall": "53.90"
+      },
+      "stare-visim": {
+        "2D_trans": "82.70",
+        "3D_trans": "68.40",
+        "cube_net": "52.20",
+        "tangram": "51.50",
+        "temporal": "39.00",
+        "perspective": "38.70",
+        "overall": "53.90"
+      }
+    },
+    {
+      "info": {
+        "name": "claude-3.5-sonnet",
+        "CoT": "false",
+        "type": "proprietary",
+        "size": "-",
+        "link": "https://www.anthropic.com/"
+      },
+      "stare": {
+        "2D_trans": "65.90",
+        "3D_trans": "51.50",
+        "cube_net": "52.30",
+        "tangram": "59.00",
+        "temporal": "54.00",
+        "perspective": "26.10",
+        "overall": "53.10"
+      },
+      "stare-visim": {
+        "2D_trans": "71.40",
+        "3D_trans": "57.80",
+        "cube_net": "51.60",
+        "tangram": "67.60",
+        "temporal": "54.00",
+        "perspective": "26.10",
+        "overall": "53.10"
+      }
+    },
+    {
+      "info": {
+        "name": "gemini-2.0-flash",
+        "CoT": "false",
+        "type": "proprietary",
+        "size": "-",
+        "link": "https://ai.google.dev/"
+      },
+      "stare": {
+        "2D_trans": "69.50",
+        "3D_trans": "56.10",
+        "cube_net": "37.70",
+        "tangram": "65.00",
+        "temporal": "38.60",
+        "perspective": "37.20",
+        "overall": "51.30"
+      },
+      "stare-visim": {
+        "2D_trans": "75.20",
+        "3D_trans": "59.30",
+        "cube_net": "35.60",
+        "tangram": "65.50",
+        "temporal": "38.60",
+        "perspective": "37.20",
+        "overall": "51.30"
+      }
+    },
+    {
+      "info": {
+        "name": "gemini-2.0-flash-thinking",
+        "CoT": "false",
+        "type": "proprietary",
+        "size": "-",
+        "link": "https://ai.google.dev/"
+      },
+      "stare": {
+        "2D_trans": "60.60",
+        "3D_trans": "49.50",
+        "cube_net": "48.30",
+        "tangram": "39.80",
+        "temporal": "45.00",
+        "perspective": "32.70",
+        "overall": "48.80"
+      },
+      "stare-visim": {
+        "2D_trans": "62.80",
+        "3D_trans": "56.10",
+        "cube_net": "50.70",
+        "tangram": "62.80",
+        "temporal": "45.00",
+        "perspective": "32.70",
+        "overall": "48.80"
+      }
+    },
+    {
+      "info": {
+        "name": "o1",
+        "CoT": "-",
+        "type": "proprietary",
+        "size": "-",
+        "link": "https://chatgpt.com/"
+      },
+      "stare": {
+        "2D_trans": "81.80",
+        "3D_trans": "67.90",
+        "cube_net": "51.30",
+        "tangram": "55.30",
+        "temporal": "45.00",
+        "perspective": "36.80",
+        "overall": "57.20"
+      },
+      "stare-visim": {
+        "2D_trans": "87.70",
+        "3D_trans": "71.60",
+        "cube_net": "53.40",
+        "tangram": "53.20",
+        "temporal": "45.00",
+        "perspective": "36.80",
+        "overall": "57.20"
+      }
+    },
+    {
+      "info": {
+        "name": "llava-onevision-72b",
+        "CoT": "false",
+        "type": "open_source",
+        "size": "72B",
+        "link": "https://huggingface.co/llava-hf/llava-onevision-qwen2-72b-ov-hf"
+      },
+      "stare": {
+        "2D_trans": "32.90",
+        "3D_trans": "27.00",
+        "cube_net": "28.50",
+        "tangram": "30.30",
+        "temporal": "35.70",
+        "perspective": "24.80",
+        "overall": "31.40"
+      },
+      "stare-visim": {
+        "2D_trans": "32.20",
+        "3D_trans": "30.60",
+        "cube_net": "34.20",
+        "tangram": "39.80",
+        "temporal": "35.70",
+        "perspective": "24.80",
+        "overall": "31.40"
+      }
+    },
+    {
+      "info": {
+        "name": "internvl2.5-78b",
+        "CoT": "false",
+        "type": "open_source",
+        "size": "78B",
+        "link": "https://huggingface.co/OpenGVLab/InternVL2_5-78B"
+      },
+      "stare": {
+        "2D_trans": "47.50",
+        "3D_trans": "38.10",
+        "cube_net": "37.10",
+        "tangram": "60.70",
+        "temporal": "31.40",
+        "perspective": "26.00",
+        "overall": "39.20"
+      },
+      "stare-visim": {
+        "2D_trans": "50.10",
+        "3D_trans": "36.50",
+        "cube_net": "37.30",
+        "tangram": "48.20",
+        "temporal": "31.40",
+        "perspective": "26.00",
+        "overall": "39.20"
+      }
+    },
+    {
+      "info": {
+        "name": "qwen2.5-vl-3b",
+        "CoT": "false",
+        "type": "open_source",
+        "size": "3B",
+        "link": "https://huggingface.co/Qwen/Qwen2-VL-3B"
+      },
+      "stare": {
+        "2D_trans": "16.60",
+        "3D_trans": "29.10",
+        "cube_net": "43.50",
+        "tangram": "50.10",
+        "temporal": "33.30",
+        "perspective": "23.30",
+        "overall": "32.30"
+      },
+      "stare-visim": {
+        "2D_trans": "20.00",
+        "3D_trans": "31.40",
+        "cube_net": "41.00",
+        "tangram": "42.70",
+        "temporal": "33.30",
+        "perspective": "23.30",
+        "overall": "32.30"
+      }
+    },
+    {
+      "info": {
+        "name": "qwen2.5-vl-7b",
+        "CoT": "false",
+        "type": "open_source",
+        "size": "7B",
+        "link": "https://huggingface.co/Qwen/Qwen2-VL-7B"
+      },
+      "stare": {
+        "2D_trans": "35.40",
+        "3D_trans": "28.80",
+        "cube_net": "40.70",
+        "tangram": "54.50",
+        "temporal": "36.50",
+        "perspective": "23.20",
+        "overall": "36.70"
+      },
+      "stare-visim": {
+        "2D_trans": "32.40",
+        "3D_trans": "31.70",
+        "cube_net": "44.90",
+        "tangram": "52.90",
+        "temporal": "36.50",
+        "perspective": "23.20",
+        "overall": "36.70"
+      }
+    },
+    {
+      "info": {
+        "name": "qwen2.5-vl-72b",
+        "CoT": "false",
+        "type": "open_source",
+        "size": "72B",
+        "link": "https://huggingface.co/Qwen/Qwen2-VL-72B"
+      },
+      "stare": {
+        "2D_trans": "45.20",
+        "3D_trans": "43.00",
+        "cube_net": "35.20",
+        "tangram": "61.20",
+        "temporal": "31.40",
+        "perspective": "26.00",
+        "overall": "42.30"
+      },
+      "stare-visim": {
+        "2D_trans": "48.50",
+        "3D_trans": "49.10",
+        "cube_net": "53.40",
+        "tangram": "56.90",
+        "temporal": "31.40",
+        "perspective": "26.00",
+        "overall": "42.30"
+      }
+    },
+    {
+      "info": {
+        "name": "human-accuracy",
+        "CoT": "-",
+        "type": "human_expert",
+        "size": "-"
+      },
+      "stare": {
+        "2D_trans": "95.00",
+        "3D_trans": "96.00",
+        "cube_net": "99.00",
+        "tangram": "87.50",
+        "temporal": "98.10",
+        "perspective": "98.40",
+        "overall": "96.50"
+      },
+      "stare-visim": {
+        "2D_trans": "97.00",
+        "3D_trans": "97.50",
+        "cube_net": "99.00",
+        "tangram": "94.00",
+        "temporal": "98.10",
+        "perspective": "98.40",
+        "overall": "96.50"
+      }
+    }
+  ]
+}
