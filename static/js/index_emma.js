@@ -41,9 +41,9 @@ function loadTableData() {
           : `<b>${row.info.name}</b>`;
 
         // CoT symbol
-        let cotSymbol = '-';
-        if (row.info.CoT === "true")  cotSymbol = '✓';
-        if (row.info.CoT === "false") cotSymbol = '✗';
+        // let cotSymbol = '-';
+        // if (row.info.CoT === "true")  cotSymbol = '✓';
+        // if (row.info.CoT === "false") cotSymbol = '✗';
 
         // Safe getter
         const safeGet = (obj, path) =>
@@ -56,7 +56,7 @@ function loadTableData() {
         tr.innerHTML = `
           <td>${nameCell}</td>
           <td>${row.info.size || '-'}</td>
-          <td>${cotSymbol}</td>
+          
 
           <!-- STARE overall + details -->
           <td class="stare-overall">

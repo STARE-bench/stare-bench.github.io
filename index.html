@@ -44,7 +44,7 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 
-  <script src="./static/js/index_emma.js"></script>
+  <script src="./static/js/index_stare.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -80,20 +80,26 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="https://anonymous.4open.science/r/EMMA_2325/"
+                <a href="https://github.com/Kuvvius/stare_open"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Anonymous Github</span>
+                  <span>Github</span>
                   </a>
               </span>
               <span class="link-block">
+                <a href="https://huggingface.co/STARE-VisSim" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon" style="font-size:18px">🤗</span>
+                  <span>STARE-VisSim</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
                 <a href="#leaderboard" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon has-text-white">🏆</span>
                   <span>Leaderboard</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
                 <a href="#analysis" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon has-text-white">📊</span>
@@ -105,13 +111,13 @@
                   <span class="icon has-text-white">🧩</span>
                   <span>Examples</span>
                 </a>
-              </span>
+              <!-- </span>
               <span class="link-block">
                 <a href="#interactive-questions" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon has-text-white">💡</span>
                   <span>Answers</span>
                 </a>
-              </span>
+              </span> -->
             </div>
           </div>
         </div>
@@ -128,7 +134,7 @@
       </h2> -->
         <img src="./static/images/overview.png" alt="EMMA Category Overview" style="max-width: 100%; height: auto;" id="EMMA_figure">
       <h2 class="subtitle has-text-centered">
-        Overview. 
+        Figure 1: Overview of the STARE benchmark. 
       </h2>
     </div>
   </div>
@@ -142,82 +148,27 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Spatial cognition is essential for human intelligence, enabling problem-solving through visual simulations rather than solely relying on verbal reasoning. However, existing AI benchmarks primarily assess verbal reasoning, neglecting the complexities of non-verbal, multi-step visual simulation. We introduce STARE (Spatial Transformations and Reasoning Evaluation), a benchmark designed to rigorously evaluate multimodal large language models on tasks better solved through multi-step visual simulation. STARE features 3K tasks spanning foundational geometric transformations (2D and 3D), integrated spatial reasoning (cube net folding and tangram puzzles), and real-world spatial reasoning (perspective and temporal reasoning), reflecting practical cognitive challenges like object assembly, mechanical diagram interpretation, and everyday spatial navigation.
+            Spatial cognition is essential for human intelligence, enabling problem-solving through visual simulations rather than solely relying on verbal reasoning. However, existing AI benchmarks primarily assess verbal reasoning, neglecting the complexities of non-verbal, multi-step visual simulation. We introduce STARE (Spatial Transformations and Reasoning Evaluation), a benchmark designed to rigorously evaluate multimodal large language models on tasks better solved through multi-step visual simulation. STARE features ∼4K tasks spanning foundational geometric transformations (2D and 3D), integrated spatial reasoning (cube net folding and tangram puzzles), and real-world spatial reasoning (perspective and temporal reasoning), reflecting practical cognitive challenges like object assembly, mechanical diagram interpretation, and everyday spatial navigation.
           </p>
           <p>
-            Our evaluations show that models excel at reasoning over simpler 2D transformations, but perform close to random chance on more complex tasks like 3D cube net folding and tangram puzzles that require multi-step visual simulations. 
-            Humans achieve near-perfect accuracy but take considerable time (up to 28.9s) on complex tasks, significantly speeding up (down by 7.5 seconds on average) with intermediate visual simulations. In contrast, models exhibit inconsistent performance gains from visual simulations, improving on most tasks but declining in specific cases like tangram puzzles (GPT-4o, o1) and cube net folding (Claude-3.5, Gemini-2.0 Flash), indicating that models may not know how to effectively leverage intermediate visual information.
-            <!-- We introduce <img src="./static/images/emma.png" style="width:5.0em; margin-top: -0.4em; vertical-align: middle;" alt="Logo"/>, a benchmark targeting organic multimodal reasoning across mathematics, physics, chemistry, and coding. EMMA tasks demand advanced cross-modal reasoning that cannot be addressed by reasoning independently in each modality, offering an enhanced test suite for MLLMs' reasoning capabilities. -->
+            Our evaluations show that models excel at reasoning over simpler 2D transformations, but perform close to random chance on more complex tasks like 3D cube net folding and tangram puzzles that require multi-step visual simulations. Humans achieve near-perfect accuracy but take considerable time (up to 28.9s) on complex tasks, significantly speeding up (down by 7.5 seconds on average) with intermediate visual simulations. In contrast, models exhibit inconsistent performance gains from visual simulations, improving on most tasks but declining in specific cases like tangram puzzles (GPT-4o, o1) and cube net folding (Claude-3.5, Gemini-2.0 Flash), indicating that models may not know how to effectively leverage intermediate visual information.            <!-- We introduce <img src="./static/images/emma.png" style="width:5.0em; margin-top: -0.4em; vertical-align: middle;" alt="Logo"/>, a benchmark targeting organic multimodal reasoning across mathematics, physics, chemistry, and coding. EMMA tasks demand advanced cross-modal reasoning that cannot be addressed by reasoning independently in each modality, offering an enhanced test suite for MLLMs' reasoning capabilities. -->
             <!-- Our evaluation of state-of-the-art MLLMs on EMMA reveals significant limitations in <b>handling complex multimodal and multi-step reasoning tasks</b>, with even advanced techniques like Chain-of-Thought prompting and test-time compute scaling underperforming. These findings underscore the need for improved multimodal architectures and training paradigms to close the gap between human and model reasoning in multimodality. -->
           </p>
         </div>
         <img src="./static/images/motivation.png" alt="Motivation" style="width: 100%; max-width: 1000px; margin-top: 20px;"/>
+        <p class="has-text-centered">Figure 2</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 
-<section class="section">
-  <div class="container">
-    <div class="columns is-centered m-6">
-      <div class="column is-full has-text-centered content">
-        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
-        <div class="leaderboard-description">
-          Accuracy scores on both EMMA and EMMA-mini. <b>Click on EMMA or EMMA-mini to expand detailed results.</b>
-        </div>        
-        <br>
-        <div class="model-labels-container">
-          <span class="leaderboard-label human_expert">Human Expert</span>
-          <span class="leaderboard-label open_source">Open-Source</span>
-          <span class="leaderboard-label proprietary">Proprietary</span>
-        </div>
-        <br>
-
-        <div class="leaderboard-container">
-          <div class="table-wrapper">
-            <table id="emma-table">
-              <thead>
-
-                <tr>
-                  <th colspan="3" class="reset-cell clickable" style="text-align: center;">Reset</th>
-                  <th class="emma-details-cell clickable" colspan="1">EMMA</th>
-                  <th class="emma-mini-details-cell clickable" colspan="1">EMMA-Mini</th>
-                </tr>
-
-                <tr>
-                  <th class="sortable clickable" data-sort="string">Name</th>
-                  <th class="clickable" data-sort="string">Size</th>
-
-                  <th class="sortable clickable" data-sort="string">CoT prompting</th>
 
 
-                  <th class="sortable clickable emma-overall" data-sort="number">Overall</th>
-                  <th class="hidden emma-details sortable clickable" data-sort="number">Math</th>
-                  <th class="hidden emma-details sortable clickable" data-sort="number">Physics</th>
-                  <th class="hidden emma-details sortable clickable" data-sort="number">Chemistry</th>
-                  <th class="hidden emma-details sortable clickable" data-sort="number">Coding</th>
 
-                  <th class="sortable clickable emma-mini-overall" data-sort="number">Overall</th>
-                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Math</th>
-                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Physics</th>
-                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Chemistry</th>
-                  <th class="hidden emma-mini-details sortable clickable" data-sort="number">Coding</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-            <p class="test-desc">Overall results of different models on the EMMA leaderboard.
-              The best-performing model in each category is <b>in-bold</b>, and the second best is <u>underlined</u>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
-<section class="section">
+
+
+<!-- <section class="section">
   <div class="container">
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
@@ -238,18 +189,30 @@
             <table id="stare-table">
               <thead>
                 <tr>
-                  <th colspan="3" class="reset-cell clickable" style="text-align: center;">Reset</th>
+                  <th colspan="2" class="reset-cell clickable" style="text-align: center;">Reset</th>
                   <th class="stare-details-cell clickable" colspan="1">STARE</th>
                   <th class="visim-details-cell clickable" colspan="1">VisSim</th>
                 </tr>
                 <tr>
                   <th class="sortable clickable" data-sort="string">Name</th>
                   <th class="clickable" data-sort="string">Size</th>
-                  <th class="sortable clickable" data-sort="string">VisSim</th>
+                  
                   <th class="sortable clickable stare-overall" data-sort="number">Overall</th>
-                  <!-- 其余 STARE 任务列根据需要加 .hidden 和 .stare-details 类 -->
-                  <th class="sortable clickable visim-overall" data-sort="number">Overall</th>
-                  <!-- 其余 VisSim 任务列根据需要加 .hidden 和 .visim-details 类 -->
+                  <th class="sortable hidden stare-details" data-sort="number">2D_trans</th>
+                  <th class="sortable hidden stare-details" data-sort="number">3D_trans</th>
+                  <th class="sortable hidden stare-details" data-sort="number">cube_net</th>
+                  <th class="sortable hidden stare-details" data-sort="number">tangram</th>
+                  <th class="sortable hidden stare-details" data-sort="number">temporal</th>
+                  <th class="sortable hidden stare-details" data-sort="number">perspective</th>
+
+                  <th class="sortable VisSim-overall" data-sort="number">overall</th>
+                  <th class="sortable hidden VisSim-details" data-sort="number">2D_trans</th>
+                  <th class="sortable hidden VisSim-details" data-sort="number">3D_trans</th>
+                  <th class="sortable hidden VisSim-details" data-sort="number">cube_net</th>
+                  <th class="sortable hidden VisSim-details" data-sort="number">tangram</th>
+                  <th class="sortable hidden VisSim-details" data-sort="number">temporal</th>
+                  <th class="sortable hidden VisSim-details" data-sort="number">perspective</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -264,7 +227,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
@@ -286,18 +249,39 @@
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-            EMMA is composed of <b> 2,788 problems</b> , of which <b> 1,796 are newly constructed</b> , across four domains: math, physics, chemistry, and coding.
+            STARE is structured to comprehensively cover spatial reasoning at multiple complexity levels, 
+            from basic geometric transformations (2D and 3D) to more integrated tasks (cube net folding and tangram puzzles) 
+            and real-world spatial reasoning scenarios (temporal frame and perspective reasoning). 
+            Each task is presented as a multiple-choice or yes/no question using carefully designed visual and textual prompts. 
+            In total, the dataset contains about 4K instances across different evaluation setups. 
+
+            <!-- EMMA is composed of <b> 2,788 problems</b> , of which <b> 1,796 are newly constructed</b> , across four domains: math, physics, chemistry, and coding.
             To provide fine-grained insights into how MLLMs might fail in multimodal reasoning, we assign labels to each problem in our benchmark. These labels are either created by domain experts or assigned by GPT-4o and subsequently verified by experts. 
-            As shown in  <a href="#EMMA_figure" style="text-decoration: underline; color: inherit;">Category Figure</a>, questions in EMMA <b>assess a wide array of multimodal reasoning skills</b>. For example, the pattern inference problem in math challenges models to identify and generalize visual patterns; the visual decomposition simulation problem in physics requires graphically decomposing forces to determine resultant effects; the reaction simulation problem in chemistry demands precise interpretation and simulation of electron movement; the 3D visualization problem in coding. 
+            As shown in  <a href="#EMMA_figure" style="text-decoration: underline; color: inherit;">Category Figure</a>, questions in EMMA <b>assess a wide array of multimodal reasoning skills</b>. For example, the pattern inference problem in math challenges models to identify and generalize visual patterns; the visual decomposition simulation problem in physics requires graphically decomposing forces to determine resultant effects; the reaction simulation problem in chemistry demands precise interpretation and simulation of electron movement; the 3D visualization problem in coding.  -->
             <!-- a compilation of data 1) carefully examined and filtered from 28 existing VQA and MathQA datasets and 2) manually collected by us. In total, 6,141 examples were collected from 31 different datasets. -->
           </p>
+          
+          <img src="static/images/variants_in_tangram_puzzle.png" alt="variants_in_tangram_puzzle" style="width: 100%; max-width: 1000px; margin-top: 20px;"/>
+          <p class="has-text-centered">Figure 3: The different variants in the Tangram Puzzle task.</p>
+          
 
-
-          <p>
+          <!-- <p>
             <ul>
               <li><b>EMMA-mini</b>: To create a more balanced subset of EMMA, we randomly sample 400 questions (100 per subject) from the benchmark, hereafter referred to as EMMA-mini.</li>
             </ul>
+          </p> -->
+
+          <p>
+            STARE separates tasks that can be visually simulated, i.e., 
+            where each transformation step is visually observable, from tasks demanding more abstract 
+            and implicit mental simulations, such as perspective reasoning. To support more fine-grained evaluation, 
+            we synthesize the tasks that humans can mentally picture or even explicitly draw the intermediate steps, 
+            including 2D transformations, 3D transformations, cube net folding and tangram puzzle. 
+            Additionally, STARE tasks are intentionally crafted to closely reflect real-world scenarios such as 
+            assembling objects (e.g., tangram puzzles), interpreting mechanical diagrams (e.g., cube net folding) and 
+            navigating environments (e.g., perspective reasoning).Detailed statistics of STARE are provided below.
           </p>
+
 
         </div>
       </div>
@@ -305,33 +289,159 @@
     <div class="columns is-centered">
       <div class="column" style="margin-right: -20rem;">
         <div class="content has-text-centered">
-          <img src="static/images/statistic.png" alt="data-overview" style="max-width: 50%;"/>
+          <img src="static/images/statistics_grouped_by_task.png" alt="statistics_grouped_by_task" style="max-width: 65%;"/>
+          <p class="has-text-centered">Table 1: Dataset statistics grouped by task category.</p>
         </div>
       </div>
       <div class="column">
         <div class="content has-text-centered">
-          <img src="static/images/composition.png" alt="data-composition" style="max-width: 56%;"/>
+          <img src="static/images/statistic.png" alt="Statistic_figure" style="max-width: 56%;"/>
+          <p class="has-text-centered">Figure 4: Data Statistics of STARE.</p>
         </div>
       </div>
     </div>
 
+    <div class="container" style="margin-bottom: 2vh;">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Experiment Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              Models exhibit significant variation in spatial reasoning performance across STARE tasks. Accuracy is highest on simple 2D transformations (up to 87.7%) but drops substantially for 3D tasks and multi-step reasoning (e.g., cube nets, tangrams), often nearing chance. Visual simulations generally improve performance, though inconsistently across models. The reasoning-optimized o1 model performs best overall with VisSim, yet still lags behind humans. Human participants consistently outperform models, confirming the complexity of STARE tasks. 
+            </p>
+          </div>
+          <img src="./static/images/image.png" alt="Motivation" style="width: 100%; max-width:1000px; margin-top: 20px;"/>
+        </div>
+      </div>
+  </div>
+
+<section class="section"  id="analysis">
 <div class="container" style="margin-bottom: 2vh;">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Test-time Compute Scaling</h2>
+        <h2 class="title is-3">Detailed Analysis</h2>
         <div class="content has-text-justified">
           <p>
-            We also try various test-time compute scaling strategies. While they tend to boost model performance, they are far from enough to close the gap to human-level performance. <b> The best model and scaling strategy configuration we try still trails humans by 27%</b>.
+            <b>💡Q1: How well do models understand individual transformation types in 2D and 3D?</b>
+          </p>
+          <p>
+            Models perform best on 2D scaling and 3D translation. Visual simulation helps most with complex 2D tasks like shearing and reflection, but has mixed results in 3D—sometimes even reducing accuracy.
+            See Figure 5.
           </p>
         </div>
-        <img src="./static/images/complexity.png" alt="Motivation" style="width: 100%; max-width:1000px; margin-top: 20px;"/>
+        <!-- <img src="./static/images/complexity.png" alt="Motivation" style="width: 100%; max-width:1000px; margin-top: 20px;"/> -->
+      </div>
+    </div>
+</div>
+</section>
+
+<div class="columns is-centered">
+  <div class="column" style="margin-right: -20rem;">
+    <div class="content has-text-centered">
+      <img src="static/images/transformation_type.png" alt="statistics_grouped_by_task" style="max-width: 65%;"/>
+      <p class="has-text-centered">Figure 5: GPT-4o performance on 2D/3D transformation types.</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content has-text-centered">
+      <img src="static/images/perception_error.png" alt="Statistic_figure" style="max-width: 56%;"/>
+      <p class="has-text-centered">Figure 6: A perception error from Claude-3.5 Sonnet.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-bottom: 2vh;">
+  <!-- Abstract. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+        <p>
+          <b>💡Q2: How does model accuracy change as task complexity increases?</b>
+        </p>
+        <p>
+          Model accuracy drops as tasks get harder, especially without visual aids. Two-step transformations are easier than one- or three-step ones. Visual simulation helps in 2D but is less effective for hard 3D tasks.
+          See Figure 7.
+        </p>
+      </div>
+      <img src="./static/images/task_complexity.png" alt="task_complexity" style="width: 100%; max-width:1000px; margin-top: 20px;"/>
+      <p class="has-text-centered">Figure 7: GPT-4o performance vs. task complexity.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-bottom: 2vh;">
+  <!-- Abstract. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+        <p>
+          <b>💡Q3: Do model failures originate from basic visual perception errors?</b>
+        </p>
+        <p>
+          Partially. When directly presenting the model with the final, fully simulated outcomes, reducing the problem to visually matching these outcomes to the correct candidate answers, accuracy improves slightly. But as Table 2 shows, for structured tasks like cube folding, accuracy jumps to 100%, revealing that perception—not reasoning—is often the bottleneck, especially in 3D.
+          Figure 6 illustrates an example of perception error. 
+        </p>
       </div>
     </div>
   </div>
+</div>
+
+
+<div class="container" style="margin-bottom: 2vh;">
+  <!-- Abstract. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+        <p>
+          <b>💡Q4: How well do models reason spatially in text?</b>
+        </p>
+        <p>
+          Text descriptions improve performance in 2D but not much in 3D. Tasks like cube folding still confuse models, indicating that mental simulation from text remains a major challenge. See Table 3.
+        </p>
+      </div>
+      <img src="./static/images/analysis_table.png" alt="task_complexity" style="width: 100%; max-width:1000px; margin-top: 20px;"/>
+
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-bottom: 2vh;">
+  <!-- Abstract. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+        <p>
+          <b>💡Q5: How well do models verbally simulate without visual simulation?</b>
+        </p>
+        <p>
+          Generally no. Adding verbal reasoning steps brings little to no benefit—and sometimes hurts. For example, as Table 4 shows, tangram accuracy drops when steps are added, revealing shortcut-based behavior instead of real reasoning.        
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-bottom: 2vh;">
+  <!-- Abstract. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="content has-text-justified">
+        <p>
+          <b>💡Q6: How well do models integrate textual context with isolated visual simulations?</b>
+        </p>
+        <p>
+          For simple tasks, showing only the final visual state often works better. But for complex ones like cube folding, missing earlier steps hurts performance, showing models struggle to integrate multi-step visual reasoning. See Table 5.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
     
 
-<section class="section" id="analysis">
+<!-- <section class="section" id="analysis">
   <div class="container">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
@@ -359,7 +469,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- EMMA Case Examples Section -->
  
@@ -374,7 +484,7 @@
           <a href="./static/images/stare_case_1.png" data-lightbox="emma-cases" data-title="Math Case 1">
             <img src="./static/images/stare_case_1.png" alt="Stare Case 1" class="case-image"/>
           </a>
-          <p>Case 1</p>
+          <p class="has-text-centered">Case 1</p>
         </div>
       </div>
       <!-- Math Case 2-->
@@ -383,61 +493,54 @@
           <a href="./static/images/stare_case_2.png" data-lightbox="emma-cases" data-title="Math Case 2">
             <img src="./static/images/stare_case_2.png" alt="Case 2" class="case-image"/>
           </a>
-          <p>Case 2</p>
+          <p class="has-text-centered">Case 2</p>
         </div>
       </div>
 
-      <!-- Physics Case 1 -->
-      <!-- <div class="box case-box">
-        <div class="content has-text-centered">
-          <a href="./static/images/physics-case-1.png" data-lightbox="emma-cases" data-title="Physics Case 1">
-            <img src="./static/images/physics-case-1.png" alt="Physics Case 1" class="case-image"/>
-          </a>
-          <p>Physics Case 1</p>
-        </div>
-      </div> -->
-
-      <!-- Physics Case 2 -->
-      <!-- <div class="box case-box">
-        <div class="content has-text-centered">
-          <a href="./static/images/physics-case-2.png" data-lightbox="emma-cases" data-title="Physics Case 2">
-            <img src="./static/images/physics-case-2.png" alt="Physics Case 2" class="case-image"/>
-          </a>
-          <p>Physics Case 2</p>
-        </div>
-      </div> -->
-
-      <!-- Physics Case 3
       <div class="box case-box">
         <div class="content has-text-centered">
-          <a href="./static/images/physics-case-3.png" data-lightbox="emma-cases" data-title="Physics Case 3">
-            <img src="./static/images/physics-case-3.png" alt="Physics Case 3" class="case-image"/>
+          <a href="./static/images/2d_error_00.png" data-lightbox="emma-cases" data-title="Math Case 2">
+            <img src="./static/images/2d_error_00.png" alt="Case 3" class="case-image"/>
           </a>
-          <p>Physics Case 3</p>
+          <p class="has-text-centered">Case 3</p>
+        </div>
+        </div>
+
+      <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/3d_error_00.png" data-lightbox="emma-cases" data-title="Math Case 2">
+            <img src="./static/images/3d_error_00.png" alt="Case 4" class="case-image"/>
+          </a>
+          <p class="has-text-centered">Case 4</p>
         </div>
       </div>
 
-      Physics Case 4 -->
+      <div class="box case-box">
+        <div class="content has-text-centered">
+          <a href="./static/images/cube_vissim_error_00.png" data-lightbox="emma-cases" data-title="Math Case 2">
+            <img src="./static/images/cube_vissim_error_00.png" alt="Case 5" class="case-image"/>
+          </a>
+          <p class="has-text-centered">Case 5</p>
+        </div>
+        </div>
+        </div>
+      </div> 
+    
+      </div>
+      </div> 
+    
+    
+    
+      <!-- Coding Case 1 -->
       <!-- <div class="box case-box">
         <div class="content has-text-centered">
-          <a href="./static/images/physics-case-4.png" data-lightbox="emma-cases" data-title="Physics Case 4">
-            <img src="./static/images/physics-case-4.png" alt="Physics Case 4" class="case-image"/>
+          <a href="./static/images/coding-case-1.png" data-lightbox="emma-cases" data-title="Coding Case 1">
+            <img src="./static/images/coding-case-1.png" alt="Coding Case 1" class="case-image"/>
           </a>
-          <p>Physics Case 4</p>
+          <p>Coding Case 1</p>
         </div>
       </div> -->
 
-      <!-- Chemistry Case -->
-      <!-- <div class="box case-box">
-        <div class="content has-text-centered">
-          <a href="./static/images/chemistry-case-1.png" data-lightbox="emma-cases" data-title="Chemistry Case 1">
-            <img src="./static/images/chemistry-case-1.png" alt="Chemistry Case 1" class="case-image"/>
-          </a>
-          <p>Chemistry Case 1</p>
-        </div>
-      </div> -->
-    
-    
       <!-- Coding Case 1 -->
       <!-- <div class="box case-box">
         <div class="content has-text-centered">
